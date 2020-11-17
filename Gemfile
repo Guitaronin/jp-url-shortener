@@ -28,6 +28,9 @@ gem 'jbuilder', '~> 2.7'
 gem "json"
 gem "resque"
 
+# Enforces many of the guidelines outlined in the community Ruby Style Guide
+gem 'rubocop', require: false
+
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
 

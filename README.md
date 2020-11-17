@@ -29,3 +29,10 @@
 # Checking your short URL redirect
 
     curl -I localhost:3000/abc
+    
+# Algorithm description for shortening the URLs
+
+I am using a [Bijective Function](https://en.wikipedia.org/wiki/Bijection) to accomplish the shortening of the URLs.
+The Bijective Function algorithm was taken from this [Post](https://www.geeksforgeeks.org/how-to-design-a-tiny-url-or-url-shortener/). 
+It basically converts a Base 10 number in this case the URL record ID in the database to a Base 62 number, from this point
+it uses the resulted number in Base 62 as the index for searching the actual corresponding characters for the shortening.
