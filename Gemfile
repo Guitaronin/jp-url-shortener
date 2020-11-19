@@ -31,6 +31,9 @@ gem "resque"
 # Enforces many of the guidelines outlined in the community Ruby Style Guide
 gem 'rubocop', require: false
 
+# Ruby gem that fetches images and metadata from a given URL.
+gem 'link_thumbnailer'
+
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
 

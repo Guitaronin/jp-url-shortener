@@ -1,6 +1,7 @@
 class ShortUrl < ApplicationRecord
   validates :full_url, presence: true
   validates_with Validators::FullUrlValidator
+  before_create :normalize_url
   after_create :encode_short_code
   scope :top, -> (limit) { order(click_count: :desc).limit(limit) }
 
@@ -9,6 +10,8 @@ class ShortUrl < ApplicationRecord
   end
 
   def update_title!
+    # This method is meant to be called primarily by a background job
+    UrlFetcher.new(self).call
   end
 
   def public_attributes
@@ -21,6 +24,11 @@ class ShortUrl < ApplicationRecord
   end
 
   private
+
+  def normalize_url
+    uri = URI.parse(self.full_url)
+    self.full_url = "http://#{uri}" unless uri.scheme
+  end
 
   def encode_short_code
     self.short_code = encoder_service.call
