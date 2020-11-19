@@ -36,3 +36,8 @@ I am using a [Bijective Function](https://en.wikipedia.org/wiki/Bijection) to ac
 The Bijective Function algorithm was taken from this [Post](https://www.geeksforgeeks.org/how-to-design-a-tiny-url-or-url-shortener/). 
 It basically converts a Base 10 number in this case the URL record ID in the database to a Base 62 number, from this point
 it uses the resulted number in Base 62 as the index for searching the actual corresponding characters for the shortening.
+
+For example take any ID Base 10 to be converted to Base 62. The ID is divided by the Base 62 as long as the 
+quotient is greater than 62. Once the quotient is less than 62 it is taken as the first number and all the previous
+remainders are used as the next numbers to fetch the corresponding character inside the Base 62 numbers/characters.
+
