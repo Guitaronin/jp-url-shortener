@@ -6,6 +6,10 @@ class ShortUrl < ApplicationRecord
   scope :top, -> (limit) { order(click_count: :desc).limit(limit) }
 
   def short_code
+    # This method is encoding the ID record on the fly. There is one test in the test suite that manually updates the
+    # ID of the record and then expects the short_code to be the correct one. I decided to leave this method as it
+    # is because I do not foresee a real life scenario when the ID of a record manually changes and also because
+    # updating information on a getter method is not a good practice
     encoder_service.call unless self.id.nil?
   end
 

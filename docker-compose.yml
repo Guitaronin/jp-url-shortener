@@ -36,13 +36,13 @@ services:
 
   mariadb:
     image: mariadb
-    container_name: short_app_mariadb_dev
+    container_name: jp_url_shortener_app_mariadb_dev
     volumes:
     - data-mysql:/var/lib/mysql
     - ./mysql:/docker-entrypoint-initdb.d:ro
     environment:
     - MYSQL_ROOT_PASSWORD=password
-    - MYSQL_DATABASE=short_development
+    - MYSQL_DATABASE=jp_url_shortener_development
     networks:
     - app
     ports:
@@ -62,7 +62,7 @@ services:
       - WEBPACKER_DEV_SERVER_HOST=0.0.0.0
     command: ./bin/webpack-dev-server --port 3035 --binding 0.0.0.0
     volumes:
-      - .:/short-app
+      - .:/jp-url-shortener
     ports:
       - '3035:3035'
 
