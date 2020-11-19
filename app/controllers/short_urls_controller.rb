@@ -11,6 +11,7 @@ class ShortUrlsController < ApplicationController
     @url = ShortUrl.new(full_url: params[:full_url])
 
     if @url.save
+      # Trigger the back ground job to do the async fetching
       UpdateTitleJob.perform_later(@url.id)
       render json: @url, status: :created
     else
@@ -22,7 +23,7 @@ class ShortUrlsController < ApplicationController
     @url = ShortUrl.find_by(id: UrlDecoder.new(params[:id]).call)
 
     if @url
-      UrlClickIncrementer.new(@url, increment: 1).call
+      UrlIncrementer.new(@url, increment: 1).call
       redirect_to @url.full_url
     else
       render json: {}, status: :not_found

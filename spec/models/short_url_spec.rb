@@ -31,6 +31,12 @@ RSpec.describe ShortUrl, type: :model do
       expect(short_url.short_code).to be_nil
     end
 
+    it 'adds a URI scheme(http) if the url is valid and does not have a URI scheme' do
+      short_url.full_url = 'www.youtube.com'
+      short_url.save
+      expect(short_url.full_url).to eq('http://www.youtube.com')
+    end
+
   end
 
   describe "existing short_url instance" do
