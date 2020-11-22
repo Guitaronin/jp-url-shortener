@@ -34,6 +34,9 @@ gem 'rubocop', require: false
 # Ruby gem that fetches images and metadata from a given URL.
 gem 'link_thumbnailer'
 
+# Gem provides support for Cross-Origin Resource Sharing (CORS) for Rack compatible web applications.
+gem 'rack-cors'
+
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
 
